@@ -2,7 +2,7 @@
 
 A script to print out images of anime to the terminal. Inspired by
 [Phoney badger's pokemon colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts) 
-Which is inspired by
+which is inspired by
 [DT's colorscripts compilation](https://gitlab.com/dwt1/shell-color-scripts)
 
 ## Table of contents
@@ -33,11 +33,11 @@ almost 900 anime from gen 1 to gen 8. Has all the animes you could ever want
 ### Demo GIFs
 Demo of the program being used
 
-<!-- ![demo of program in action](./demo_images/colorscript-demo.gif) -->
+![demo of program in action](./demo_images/demo_1.gif)
 
 Demo of the program running on terminal startup.
 
-<!-- ![demo of random animes on terminal spawn](./demo_images/poke_demo.gif) -->
+![demo of random animes on terminal spawn](./demo_images/demo_2.gif)
 
 ### Screenshots
 ![screenshot](./demo_images/demo_1.png)
@@ -57,9 +57,9 @@ modern terminals have. More on terminals and color support can be found in
 ## Build
 Clone or download the repository
 ```bash
-git clone https://github.com/mizuday/ani-colorscripts.git
+git clone https://github.com/mizuday/anime-colorscripts.git
 ```
-`cd` into the directory and run the install script
+`cd` into the directory and run the build script
 ```bash
 cd anime-colorscripts
 ./build.sh
@@ -76,8 +76,21 @@ Which should print out the help page of the program
 
 ## Install
 
-download 
+Download the latest version of the scripts in the [Release Section](https://github.com/mizuday/anime-colorscripts/releases/)
 
+Extract the tar.gz file
+```bash
+tar -xvzf anime-colorscripts.tar.gz
+```
+`cd` into the directory and run the install script
+```bash
+cd anime-colorscripts
+sudo ./install.sh
+```
+Now the program should be installed. You can check this by using
+```bash
+anime-colorscripts
+```
 
 ## Usage
 You can run the program from the command line to either display a anime of your
@@ -86,11 +99,7 @@ choice by specifying the anime name or make it display a random anime.
 Usage: anime-colorscripts [OPTION] [ANIME NAME]
     "-h, --help, help" "Print this help." \
     "-l, --list, list" "Print list of all anime"\
-    "-r, --random, random" "Show a random anime. This flag can optionally be
-                    followed by a generation number or range (1-8) to show random
-                    anime from a specific generation or range of generations.
-                    The generations can be provided as a continuous range (eg. 1-3)
-                    or as a list of generations (eg. 1 3 6)"\
+    "-r, --random, random" "Show a random anime."\
     "-n, --name" "Select anime by name. Generally spelled like in the games.
                     a few exceptions are nidoran-f,nidoran-m,mr-mime,farfetchd,flabebe
                     type-null etc. Perhaps grep the output of --list if in
@@ -99,7 +108,7 @@ Usage: anime-colorscripts [OPTION] [ANIME NAME]
 
 Example of printing out a specific anime
 ```
-anime-colorscripts -n charizard
+anime-colorscripts -n saitamawow
 ```
 Example of printing out a random anime
 ```
@@ -127,7 +136,6 @@ function fish_greeting
      anime-colorscripts -r
 end
 ```
-A more advaced setup combining multiple colorscripts can be found on anime-colorscripts#2
 
 ## Location of the files
 The program is located at usr/local/opt/anime-colorscripts/ with the script being symlinked to /usr/local/bin/
@@ -142,10 +150,8 @@ scrape and download all the sprites, and a python script to convert these sprite
 text files, they are also included in the repo and can be found in the [src/generator](src/generator) folder.
 
 ## Author
-Phoney badger:
-https://gitlab.com/phoneybadger
+Juan Louis:
+https://github.com/mizuday
 
 ## License
 The MIT License (MIT)
-
-
