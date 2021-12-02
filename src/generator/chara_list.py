@@ -19,9 +19,9 @@ def main():
     
     html_document.close()
 
-    with open("charalist.txt", 'w') as charas:
+    with open("charalistraw.txt", 'w') as charas:
         for chara in namelist:
-            charas.write("%s\n" % chara)
+            charas.write(f"{chara}\n")
 
 
 if __name__=='__main__':
