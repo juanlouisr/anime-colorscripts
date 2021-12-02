@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import re
 
 def main():
-    html_document = open("src/html/emojigganime.html", 'r')
+    html_document = open("src/html/emojigganime.txt", 'r')
 
     soup = BeautifulSoup(html_document, 'html.parser')
     
