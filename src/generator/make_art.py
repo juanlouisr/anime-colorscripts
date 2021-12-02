@@ -52,7 +52,7 @@ def get_pokemon_art(pokemon,path_to_images,with_resize=False):
     # whether to scale down images that are too large.leads to loss in quality
     if with_resize:
         height,width,channels = image_cropped.shape
-        height_threshold=32
+        height_threshold=64
         if height>height_threshold:
             print(f'{pokemon} too large')
             image_cropped=tm.resize(image_cropped,(int(height/1.5),int(width/1.5),channels),anti_aliasing=False)
