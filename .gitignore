@@ -12,3 +12,5 @@ test_*
 
 # ignoring package source info files
 .SRCINFO
+
+colorscripts
