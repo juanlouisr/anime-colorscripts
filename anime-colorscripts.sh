@@ -49,7 +49,7 @@ indices="1 91"
 _show_random_anime(){
     # # Using mac coreutils if on MacOS
     start_index=1
-    end_index=$(ls "$PROGRAM_DIR/charalist.txt" | wc -l)
+    end_index=$(ls "$PROGRAM_DIR/colorscripts" | wc -l)
     if [ $OS = 'Darwin' ]
     then
         random_index=$(gshuf -i "$start_index"-"$end_index" -n 1)
