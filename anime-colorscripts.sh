@@ -44,41 +44,12 @@ _help(){
 # Index values where the different generations are seperated in the names list
 # Cannot think of a better way to do arrays with narrow POSIX compliance
 # 0-151 gen 1, 810-898 gen 8
-indices="1 152 251 387 494 650 722 810 898"
+indices="1 91"
 
 _show_random_anime(){
-    #selecting a random art file from the whole set
-
-    # if there are no arguments show across all generations
-    if [ $# = 0 ]; then
-        start_gen=1
-        end_gen=8
-    # show from single generation or continuous range of generations
-    elif [ $# = 1 ]; then
-        generation=$1
-        start_gen=${generation%-*}
-        end_gen=${generation#*-}
-    # show from list of generations
-    else
-        generations=$@
-        if [ $OS = 'Darwin' ]; then
-            start_gen=$(gshuf -e $generations -n 1)
-        else
-            start_gen=$(shuf -e $generations -n 1)
-        fi
-        end_gen=$start_gen
-    fi
-
-    if [ "$end_gen" -gt 8 ]||[ "$start_gen" -lt 1 ]; then
-        echo "Invalid generation"
-        exit 1
-    fi
-
-    start_index=$(_get_start_index $start_gen)
-    end_index=$(_get_end_index $end_gen)
-
-    # getting a random index (using shuf instead of $RANDOM for POSIX compliance)
-    # Using mac coreutils if on MacOS
+    # # Using mac coreutils if on MacOS
+    start_index=1
+    end_index=91
     if [ $OS = 'Darwin' ]
     then
         random_index=$(gshuf -i "$start_index"-"$end_index" -n 1)
