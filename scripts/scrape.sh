@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PATH_TO_NAMES='charalist.txt'
+PATH_TO_NAMES='charalistraw.txt'
 PATH_TO_IMAGES='images/original'
 
 # script to download all images of chara from charadb
