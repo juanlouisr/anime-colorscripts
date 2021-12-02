@@ -1,0 +1,14 @@
+# ignore virtual env
+mon
+
+# ignore any bytecode files
+*.pyc
+
+# ignore sprites folder
+images
+
+# ignore testing files
+test_*
+
+# ignoring package source info files
+.SRCINFO
