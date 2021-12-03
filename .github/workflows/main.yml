@@ -33,7 +33,17 @@ jobs:
       - run: bash ./scripts/scrape.sh
       - run: python src/generator/make_art.py
       - run: rm -rf images
+      - run: mkdir -p acscript/anime-colorscripts
+      - run: cp LICENSE acscript/anime-colorscripts
+      - run: cp anime-colorscripts.sh acscript/anime-colorscripts
+      - run: cp charalist.txt acscript/anime-colorscripts
+      - run: cp install.sh acscript/anime-colorscripts
+      - run: cp -r colorscripts acscript/anime-colorscripts
+      - run: tar -czvf anime-colorscripts.tar.gz -C acscript .
       - uses: marvinpinto/action-automatic-releases@latest
         with: 
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
+          files: |
+            anime-colorscripts.tar.gz
+
