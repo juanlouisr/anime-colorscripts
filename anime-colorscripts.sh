@@ -11,7 +11,7 @@ fi
 
 PROGRAM_DIR=$(dirname "$PROGRAM")
 # directory where all the art files exist
-POKEART_DIR="$PROGRAM_DIR/colorscripts"
+CHARART_DIR="$PROGRAM_DIR/colorscripts"
 # formatting for the help strings
 fmt_help="  %-20s\t%-54s\n"
 
@@ -26,18 +26,15 @@ _help(){
         "-h, --help, help" "Print this help." \
         "-l, --list, list" "Print list of all anime"\
         "-r, --random, random" "Show a random anime. This flag can optionally be
-                        followed by a generation number or range (1-8) to show random
-                        anime from a specific generation or range of generations.
-                        The generations can be provided as a continuous range (eg. 1-3)
-                        or as a list of generations (1 3 6)"\
-        "-n, --name" "Select anime by name. Generally spelled like in the games.
-                        a few exceptions are nidoran-f,nidoran-m,mr-mime,farfetchd,flabebe
-                        type-null etc. Perhaps grep the output of --list if in
-                        doubt"
-    echo "Examples: anime-colorscripts --name pikachu"
+                        followed by character / anime names (eg. miku, lumi, naruto)
+                        this will choose random anime character between all possible
+                        outcome"\
+        "-n, --name" "Select anime by name."
+    echo "Examples: anime-colorscripts --name 2997-hatsune-miku-wtf"
     echo "          anime-colorscripts -r"
-    echo "          anime-colorscripts -r 1-3"
-    echo "          anime-colorscripts -r 1 2 6"
+    echo "          anime-colorscripts -r miku"
+    echo "          anime-colorscripts -r miku naruto"
+    echo "          anime-colorscripts -r miku naruto lumi"
 }
 
 
@@ -48,20 +45,45 @@ indices="1 91"
 
 _show_random_anime(){
     # # Using mac coreutils if on MacOS
-    start_index=1
-    end_index=$(ls "$PROGRAM_DIR/colorscripts" | wc -l)
-    if [ $OS = 'Darwin' ]
+    if [ $# = 0 ]
     then
-        random_index=$(gshuf -i "$start_index"-"$end_index" -n 1)
+        start_index=1
+        end_index=$(ls "$PROGRAM_DIR/colorscripts" | wc -l)
+        if [ $OS = 'Darwin' ]
+        then
+            random_index=$(gshuf -i "$start_index"-"$end_index" -n 1)
+        else
+            random_index=$(shuf -i "$start_index"-"$end_index" -n 1)
+        fi
+
+        random_anime=$(sed $random_index'q;d' "$PROGRAM_DIR/charalist.txt")
+        echo $random_anime
+
+        # print out the anime art for the anime
+        cat "$CHARART_DIR/$random_anime.txt"
     else
-        random_index=$(shuf -i "$start_index"-"$end_index" -n 1)
+        if [ $OS = 'Darwin' ]
+        then
+            random_anime=$(_show_random_filtered $@ | gshuf -n 1 )
+        else
+            random_anime=$(_show_random_filtered $@ | shuf -n 1 )
+        fi
+
+        if [ -z "$random_anime" ]
+        then
+            echo "Invalid anime"
+        else
+            echo $(basename $random_anime .txt)
+            cat "$random_anime"
+        fi
     fi
+}
 
-    random_anime=$(sed $random_index'q;d' "$PROGRAM_DIR/charalist.txt")
-    echo $random_anime
-
-    # print out the anime art for the anime
-    cat "$POKEART_DIR/$random_anime.txt"
+_show_random_filtered(){
+    for var in "$@"
+    do
+        find $CHARART_DIR/*$var* -type f 2>/dev/null
+    done
 }
 
 _get_end_index(){
@@ -90,8 +112,7 @@ _get_start_index(){
 _show_anime_by_name(){
     anime_name=$1
     echo $anime_name
-    # Error handling. Can't think of a better way to do it
-    cat "$POKEART_DIR/$anime_name.txt" 2>/dev/null || echo "Invalid anime"
+    cat "$CHARART_DIR/$anime_name.txt" 2>/dev/null || echo "Invalid anime"
 }
 
 _list_anime_names(){
