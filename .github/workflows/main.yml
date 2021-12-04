@@ -46,8 +46,6 @@ jobs:
       - run: cp install.sh acscript/anime-colorscripts
       - run: cp -r colorscripts acscript/anime-colorscripts
       - run: tar -czvf anime-colorscripts.tar.gz -C acscript .
-
-      - name: Upload Release
       - uses: marvinpinto/action-automatic-releases@latest
         with: 
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
