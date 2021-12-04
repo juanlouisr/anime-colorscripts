@@ -21,6 +21,7 @@ which is inspired by
       - [On Fish](#on-fish)
   - [Location of the files](#location-of-the-files)
   - [How it works](#how-it-works)
+  - [Depedencies](#depedencies)
   - [Author](#author)
   - [License](#license)
 
@@ -99,27 +100,33 @@ choice by specifying the anime name or make it display a random anime.
 Usage: anime-colorscripts [OPTION] [ANIME NAME]
     "-h, --help, help" "Print this help." \
     "-l, --list, list" "Print list of all anime"\
-    "-r, --random, random" "Show a random anime."\
-    "-n, --name" "Select anime by name. Generally spelled like in the games.
-                    a few exceptions are nidoran-f,nidoran-m,mr-mime,farfetchd,flabebe
-                    type-null etc. Perhaps grep the output of --list if in
-                    doubt"
+    "-r, --random, random" "Show a random anime. This flag can optionally be
+                    followed by character / anime names (eg. miku, lumi, naruto)
+                    this will choose random anime character between all possible
+                    outcome"\
+    "-n, --name" "Select anime by name."
+    "Examples: anime-colorscripts --name 2997-hatsune-miku-wtf"
+    "          anime-colorscripts -r"
+    "          anime-colorscripts -r miku"
+    "          anime-colorscripts -r miku naruto"
+    "          anime-colorscripts -r miku naruto lumi"
 ```
 
 Example of printing out a specific anime
 ```
-anime-colorscripts -n saitamawow
+anime-colorscripts -n 2997-hatsune-miku-wtf
 ```
 Example of printing out a random anime
 ```
 anime-colorscripts -r
 ```
+Example of printing out a random anime with specific anime
+```
+anime-colorscripts -r miku
+```
 Some anime with spaces or periods or other special characters in their name
-might not be spelled as expected, some examples include:
-```
-farfetch'd -> farfetchd
-mr.mime -> mr-mime
-```
+might not be spelled as expected
+
 These are rare exceptions, and if required you can parse the `--list` page to see
 the names of all the anime.
 
@@ -149,6 +156,14 @@ files using a custom python script after some preprocessing. A simple script to
 scrape and download all the sprites, and a python script to convert these sprites into properly formatted and colored
 text files, they are also included in the repo and can be found in the [src/generator](src/generator) folder.
 
+## Depedencies
+- [Numpy](https://numpy.org/)
+- [BS4](https://pypi.org/project/beautifulsoup4/)
+- [Scikit-Image (optional)](https://scikit-image.org/)
+- [openCV (optional)](https://github.com/opencv/opencv)
+- [Wget](https://www.gnu.org/software/wget/)
+- [Grep](https://www.gnu.org/software/grep/)
+- [Sed](https://www.gnu.org/software/sed/)
 ## Author
 Juan Louis:
 https://github.com/mizuday
