@@ -38,9 +38,9 @@ def main():
                 print(f"couldn't generate art for {chara}")
                 print(e)
                 continue
-            print(chara_art)
+            # print(chara_art)
             # remove first 5 lines of character
-            chara = chara[5:]
+            # chara = chara[5:]
             write_chara_to_file(chara,chara_art,output_path)
 
 def write_chara_to_file(chara,chara_art,output_path):
